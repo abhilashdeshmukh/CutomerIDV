@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css"
+	href="/CustomerIDV/resources/header.css">
+</head>
+<body>
+	<div id="menu">
+		<img alt="Bank Logo" src="/CustomerIDV/resources/logo.jpg" width="300"
+			height="52"/>
+			<ul>
+				<li><a href="${flowExecutionUrl}&_eventId=Home" id="header">Home</a></li>
+				<li><a href="${flowExecutionUrl}&_eventId=Idnv" id="header">ID & V </a></li>
+				<li><a href="#" id="header">Financial Transactions</a>
+					 <ul>
+				        <li><a href="#">Cash Management</a></li>
+				        <li><a href="#">Fund Transfer</a></li>
+				        <li><a href="#">Cheque</a></li>
+				     </ul>
+				</li>
+				<li><a href="${flowExecutionUrl}&_eventId=Admin" id="header">Admin</a></li>
+				<li><a href="#" id="header">About</a></li>
+				<li class="span">Welcome <b>${loginBean.username}!!</b></li>
+			</ul>
+	</div>
+	<br/>
+	<hr/>
+</body>
+</html>

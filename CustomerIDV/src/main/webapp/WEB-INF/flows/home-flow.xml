@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow        
+	http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+	start-state="home">
+
+	<input name="loginBean" />
+
+	<view-state id="home" view="Home" model="loginBean">
+	</view-state>
+
+	<end-state id="Home"></end-state>
+	<end-state id="Idnv"></end-state>
+	<end-state id="Admin"></end-state>
+	<end-state id="About"></end-state>
+	
+	<global-transitions>
+		<transition on="Home" to="Home" />
+		<transition on="Idnv" to="Idnv" />
+		<transition on="Admin" to="Admin" />
+		<transition on="About" to="About" />
+	</global-transitions>
+</flow>

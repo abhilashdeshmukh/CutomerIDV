@@ -1,0 +1,12 @@
+<!-- Declare the persistence unit for this application (see line 6 below). 
+Mention the class that should be used for persistence.  
+ -->
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
+	<persistence-unit name="userPersistenceUnit" transaction-type="RESOURCE_LOCAL" >
+	<class>com.accenture.CustomerIDV.beans.User</class>
+	<class>com.accenture.CustomerIDV.beans.CustomerVerify</class>
+	<class>com.accenture.CustomerIDV.beans.Admin</class>
+	<class>com.accenture.CustomerIDV.beans.UserDetails</class>
+	<class>com.accenture.CustomerIDV.beans.Question</class>
+	</persistence-unit>
+</persistence>

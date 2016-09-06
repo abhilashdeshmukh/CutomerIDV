@@ -1,0 +1,81 @@
+@CHARSET "ISO-8859-1";
+
+body {
+	font-family: sans-serif;
+}
+ 
+a#header {
+	font-size: 15px;
+}
+
+a#default {
+	font-size: 15px;
+}
+
+div#menu {
+	padding: 5px 0px 0px 0px;
+	background: #FFFFFF;
+	margin: 0px 0px 0px 0px;
+}
+
+
+li.span {
+    float: right;
+    color: #4597CD;
+}
+
+ul
+{
+    font-family: Arial, Verdana;
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+ul li
+{
+    display: block;
+    position: relative;
+    float: left;
+}
+
+li ul
+{
+    display: none;
+}
+
+ul li a 
+{
+    display: block;
+    text-decoration: none;
+    color: #ffffff;
+    padding: 5px 15px 5px 15px;
+    background: #4597CD;
+    white-space: nowrap;
+}
+
+ul li a:AFTER  
+{
+    background: #1c8a9d;
+    
+}
+
+ul li:hover ul 
+{
+    display: block;
+    position: fixed;
+    float: none;
+}
+
+li:hover li
+{
+    float: none;
+    font-size: 15px;
+}
+
+li a:hover 
+{
+    background: #1c8a9d;
+    color: white;
+}

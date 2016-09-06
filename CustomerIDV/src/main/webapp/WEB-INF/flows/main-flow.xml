@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow        
+	http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+	start-state="welcome">
+
+	<var name="loginBean" class="com.accenture.CustomerIDV.beans.Admin" />
+
+	<view-state id="welcome" view="Login" model="loginBean"
+		popup="true">
+		<transition on="loginCredentialsEntered" to="performLoginAction" />
+		<transition on="cancel" to="loginCancel" />
+	</view-state>
+
+	<view-state id="failure" view="Failure">
+		<transition on="toLogin" to="welcome" />
+	</view-state>
+
+	<action-state id="performLoginAction">
+		<evaluate expression="controller.performlogin(loginBean)" />
+		<transition on="Success" to="home">
+			<evaluate expression="controller.getAdmin(loginBean)" result="flowScope.loginBean"/>
+			<evaluate expression="controller.addlastlogin(loginBean)" />
+		</transition>
+		<transition on="failure" to="failure" />
+	</action-state>
+
+	<subflow-state id="home" subflow="homeFlow">
+		<input name="loginBean" value="flowScope.loginBean"/>
+		<transition on = "Home" to = "home"/>
+		<transition on = "Idnv" to = "idnv"/>
+		<transition on = "Admin" to = "admin"/>
+		<transition on = "About" to = "about"/>
+	</subflow-state>
+	
+	<subflow-state id="idnv" subflow="idnvFlow">
+		<input name="loginBean" value="flowScope.loginBean"/>
+		<transition on = "Home" to = "home"/>
+		<transition on = "Idnv" to = "idnv"/>
+		<transition on = "Admin" to = "admin"/>
+		<transition on = "About" to = "about"/>
+	</subflow-state>
+	
+	<subflow-state id="admin" subflow="adminFlow">
+		<input name="loginBean" value="flowScope.loginBean"/>
+		<transition on = "Home" to = "home"/>
+		<transition on = "Idnv" to = "idnv"/>
+		<transition on = "Admin" to = "admin"/>
+		<transition on = "About" to = "about"/>
+	</subflow-state>
+
+	<!-- <view-state id="home" view="Home" model="loginBean">
+		<on-entry>
+			<evaluate expression="controller.getAdmin(loginBean)" result="flowScope.loginBean"/>
+			<evaluate expression="controller.addlastlogin(loginBean)" />
+		</on-entry>
+	</view-state> -->
+	
+	<end-state id="end" view="externalRedirect:http://localhost:8080/CustomerIDV/mainFlow">
+	
+	<on-entry>
+		<evaluate expression="controller.logout()"></evaluate>
+	</on-entry>
+	
+	</end-state>
+	
+	<global-transitions>
+		<transition on="Logout" to="end" />
+	</global-transitions>
+	</flow>

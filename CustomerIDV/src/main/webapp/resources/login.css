@@ -1,0 +1,225 @@
+@CHARSET "ISO-8859-1";
+
+body {
+	font-family: sans-serif;
+	background: #ffffff;
+}
+
+h2 {
+	background-color: #4597CD;
+	font-size: 5px;
+	margin-top: 0px;
+	margin-left: 0px;
+	color: white;
+	padding-left: 2%
+}
+
+div.username {
+	color: #4597CD;
+}
+
+div.lastlogin {
+	color: #3182b7;
+}
+
+h4, h5, h6 {
+	color: #4597CD;
+	margin-top: 5px;
+	margin-left: 5px;
+}
+
+h3 {
+	color: #4597CD;
+	font-size: 5px;
+	margin-top: 5px;
+	margin-left: 5px;
+}
+
+#loginform {
+	padding: 5px 0px 5px 0px;
+	background: #E6E6E6;
+	width: 98%;
+	margin: 10px 0px 0px 0px;
+}
+
+input {
+	border: 1px solid #c0c0c0;
+	border-radius: 10px;
+	padding: 5px 5px 5px 5px;
+	width: 240px;
+	font-size: 15px;
+	color: gray;
+	margin: 0px 0px 0px 0px;
+}
+
+input.radio {
+	border: 0px solid #c0c0c0;
+	padding: 3px 3px 3px 3px;
+	width: 10px;
+	font-size: 15px;
+	margin: 5px 5px 5px 5px;
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	margin: -1px 4px 0 0;
+	vertical-align: middle;
+	
+}
+
+input.answer {
+	border: 1px solid #c0c0c0;
+	border-radius: 10px;
+	padding: 10px 10px 10px 5px;
+	width: 300px;
+	font-size: 15px;
+	color: gray;
+	margin: 0px 0px 0px 0px;
+}
+
+input.button {
+	border: 1px solid #c0c0c0;
+	padding: 0px 0px 0px 0px;
+	background: #199696;
+	width: 100px;
+	height: 35px;
+	border-radius: 10px;
+	font-size: 15px;
+	color: white;
+	font-weight: bold;
+	margin: 0px 0px 0px 0px;
+}
+
+input.vbutton {
+	border: 1px solid #c0c0c0;
+	padding: 0px 0px 0px 0px;
+	background: #199696;
+	width: 100px;
+	height: 35px;
+	border-radius: 10px;
+	font-size: 15px;
+	color: white;
+	font-weight: bold;
+	margin: 0px 5px 0px 20px;
+}
+
+input.button:HOVER {
+	background: #ffffff;
+	color: #005353;
+	font-weight: bold;
+}
+
+input.vbutton:HOVER {
+	background: #ffffff;
+	color: #005353;
+	font-weight: bold;
+}
+
+div#userinfo {
+	padding: 10px 0px 10px10px;
+	background: #E6E6E6;
+	width: 98%;
+	margin: 10px 0px 0px 0px;
+	color: gray;
+}
+
+div#error {
+	font-size: 15px;
+	color: red;
+	width: 40%;
+}
+
+td#registration {
+	font-size: 15px;
+	color: gray;
+} 
+
+input.hubbutton {
+	border: 1px solid #c0c0c0;
+	padding: 0px 0px 0px 0px;
+	background: #199696;
+	width: 100px;
+	height: 35px;
+	border-radius: 10px;
+	font-size: 15px;
+	color: white;
+	font-weight: bold;
+	margin: 0px 30px 0px 20px;
+}
+
+input.hubbutton:HOVER {
+	background: #ffffff;
+	color: #005353;
+	font-weight: bold;
+}
+
+#question {
+	font-family: sans-serif;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+#question td, #question th {
+	font-size: 15px;
+	padding: 5px 9px 5px 9px;
+}
+
+#question th {
+	font-size: 15px;
+	text-align: left;
+	padding-top: 5px;
+	padding-bottom: 4px;
+	background-color: #cfe9e9;
+	color: #005353;
+}
+
+#question tr.alt td {
+	color: #000000;
+	background-color: #cfe9e9;
+}
+
+div#form {
+	background: #E6E6E6;
+	padding: 10px 10px 10px 10px;
+	margin: 10px 200px 0px 250px;
+	width: 60%
+}
+
+span.lastlogin {
+	background: #ffffff;
+	padding: 0;
+	margin: 0;
+	font-size: 10px;
+}
+
+table#registration {
+	padding-left: 190px;
+}
+
+select {
+	font-family: sans-serif;
+	font-size: 15px;
+}
+
+table.info, .info td, .info th {
+	color: black;
+	border: 1px solid #000000;
+	border-collapse: collapse;
+	padding: 10px 10px 10px 10px;
+	background-color: white;
+}
+
+table.edit, .edit td{
+	color: black;
+	border: none;
+	border-collapse: collapse;
+	padding: 10px 10px 10px 50px;
+	background-color: white;
+    margin-right: 102px;
+    margin-left: 102px;
+	
+}
+
+div.buttondiv {
+	padding: 1% 1% 1% 35%;
+	width: 30%
+}

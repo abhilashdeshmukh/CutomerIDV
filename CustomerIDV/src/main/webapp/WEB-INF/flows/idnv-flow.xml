@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow        
+	http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+	start-state="displayView">
+
+	<var name="userBean" class="com.accenture.CustomerIDV.beans.User" />
+	<var name="verificationBean" class="com.accenture.CustomerIDV.beans.CustomerVerify" />
+	<var name="userdetails" class="com.accenture.CustomerIDV.beans.UserDetails" />
+	<var name="questions" class="java.util.ArrayList" />
+
+	<input name="loginBean" />
+
+	<!-- Display the index.jsp page -->
+	<view-state id="displayView" view="Search_Customer" model="userBean">
+		<transition on="customerIdEntered" to="performLoginAction" />
+		<transition on="cancel" to="loginCancel" />
+	</view-state>
+
+	<action-state id="performLoginAction">
+		<evaluate expression="controller.performSearch(userBean)" />
+		<transition on="success" to="displayLoginSuccessView" />
+		<transition on="failure" to="displayfailureView" />
+	</action-state>
+
+	<view-state id="displayLoginSuccessView" view="hubscreen"
+		model="userBean">
+		<on-entry>
+			<evaluate expression="controller.getUser(userBean)" result="viewScope.userBean"></evaluate>
+		</on-entry>
+		<transition on="logoutEntered" to="displayView"></transition>
+		<transition on="verify" to="verification" />
+	</view-state>
+
+	<view-state id="displayfailureView" view="Registration"
+		model="userBean">
+		<transition on="registrationCredentialsEntered" to="Registration" />
+		<transition on="registrationCancel" to="displayView" />
+	</view-state>
+
+	<action-state id="Registration">
+		<evaluate expression="controller.adduser(userBean)" result="flowScope.userBean" />
+		<transition to="Registrationsub" />
+	</action-state>
+
+	<view-state id="Registrationsub" view="Registration_sub"
+		model="userdetails">
+		<transition on="registrationCredentialsEntered" to="performRegistrationAction" />
+		<transition on="registrationCancel" to="displayView" />
+	</view-state>
+
+
+	<action-state id="performRegistrationAction">
+		<evaluate expression="controller.performRegistration(userBean,userdetails)" result="flowScope.userBean"/>
+		<transition to="securityQuestionView" />
+		<!-- <transition on="failure" to="displayView" /> Have to write the exception handler-->
+	</action-state>
+
+	<view-state id="securityQuestionView" view="Question"
+		model="verificationBean">
+		<on-entry>
+			<evaluate expression="controller.getQuestions()" result="flowScope.questions"/>
+		</on-entry>
+		<transition on="securityQuestionSelected" to="addSecurityQuestion" />
+		<transition on="registerCancel" to="registerCancel" />
+	</view-state>
+
+	<action-state id="registerCancel">
+		<on-entry>
+			<evaluate expression="controller.getUserByName(userBean)"
+				result="flowScope.userBean" />
+		</on-entry>
+		<evaluate expression="controller.rolloff(userBean)"></evaluate>
+		<transition to="displayView" />
+	</action-state>
+
+	<action-state id="addSecurityQuestion">
+		<!-- <on-entry>
+			<evaluate expression="controller.getUserByName(userBean)" result="flowScope.userBean" />
+		</on-entry> -->
+		<evaluate expression="controller.addQuestion(verificationBean,userBean)" />
+		<transition on="success" to="registrationsuccess" />
+		<transition on="failure" to="securityQuestionFailuer" />
+	</action-state>
+
+	<view-state id="registrationsuccess" view="RegistrationSucess">
+		<transition on="displayView" to="displayView" />
+	</view-state>
+
+	<view-state id="loginCancel" view="cancel">
+		<transition on="toLogin" to="displayView" />
+	</view-state>
+
+	<view-state id="verification" view="Verification" model="verificationBean">
+		<on-entry>
+			<evaluate expression="controller.getQuestions(userBean)" result="viewScope.questions"/>
+		</on-entry>
+		<transition on="verificationDetailsEntered" to="performVerification" />
+		<transition on="verificationCancel" to="displayView" />
+	</view-state>
+
+	<action-state id="performVerification">
+		<evaluate expression="controller.verify(verificationBean)" />
+		<transition on="success" to="displayVerificationSuccessView" />
+		<transition on="failure" to="displayVerificationfailureView" />
+	</action-state>
+
+	<view-state id="displayVerificationSuccessView" view="Success">
+		<transition on="toLogin" to="displayView" />
+	</view-state>
+
+	<view-state id="displayVerificationfailureView" view="Failure">
+		<transition on="toLogin" to="displayView" />
+	</view-state>
+
+	<end-state id="Home"></end-state>
+	<end-state id="Idnv"></end-state>
+	<end-state id="Admin"></end-state>
+	<end-state id="About"></end-state>
+
+	<global-transitions>
+		<transition on="Home" to="Home" />
+		<transition on="Idnv" to="Idnv" />
+		<transition on="Admin" to="Admin" />
+		<transition on="About" to="About" />
+	</global-transitions>
+
+</flow>     

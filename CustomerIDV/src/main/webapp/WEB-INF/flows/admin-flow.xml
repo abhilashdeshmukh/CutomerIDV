@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow        
+	http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+	start-state="displayView">
+
+	<var name="userBean" class="com.accenture.CustomerIDV.beans.User" />
+	<var name="verificationBean" class="com.accenture.CustomerIDV.beans.CustomerVerify" />
+	<var name="userdetails" class="com.accenture.CustomerIDV.beans.UserDetails" />
+	<var name="questions" class="java.util.ArrayList" />
+
+	<input name="loginBean" />
+
+	<view-state id="displayView" view="AdminHome" model="userBean">
+		<on-entry>
+			<evaluate expression="controller.getAllCustomers()" result="flowScope.userBean"></evaluate>
+		</on-entry>
+		<transition on="editUserDetails" to="editUserDetails" />
+		<transition on= "deleteUser" to = "deleteUser" />
+	</view-state>
+	
+	<action-state id="editUserDetails">
+		<evaluate expression="controller.getUser(flowRequestContext)" result="flowScope.userBean"/>
+		<transition to="editUser" />
+	</action-state>
+	
+	<view-state id="editUser" view="EditUser" model="userBean">
+		<transition on = "updateUserDetails" to="updateUserDetails" />
+	</view-state>
+
+	<action-state id="updateUserDetails">
+		<evaluate expression="controller.updateUserDetails(flowRequestContext)"></evaluate>
+		<transition on="success" to="displayView" />
+		<transition on="failure" to="updateFailuer" />
+	</action-state>
+	
+	<action-state id="deleteUser">
+		<on-entry>
+			<evaluate expression="controller.getUser(flowRequestContext)" result="flowScope.userBean"/>
+		</on-entry>
+		<evaluate expression="controller.deleteUser(userBean)"></evaluate>
+		<transition on="success" to="displayView" />
+	</action-state>
+
+	<end-state id="Home"></end-state>
+	<end-state id="Idnv"></end-state>
+	<end-state id="Admin"></end-state>
+	<end-state id="About"></end-state>
+
+	<global-transitions>
+		<transition on="Home" to="Home" />
+		<transition on="Idnv" to="Idnv" />
+		<transition on="Admin" to="Admin" />
+		<transition on="About" to="About" />
+	</global-transitions>
+
+</flow>     
